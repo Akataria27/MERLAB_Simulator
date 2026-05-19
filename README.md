@@ -1,11 +1,80 @@
-state_id,bin_1,bin_2,bin_3,bin_4,bin_5,bin_6,bin_7,bin_8,bin_9,bin_10,bin_11,bin_12,bin_13,bin_14,bin_15,R1_pick_bin,R1_pick_item,R2_pick_bin,R2_pick_item,expected_remaining_successes
-s0,AB,AD,E,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,NONE,NONE,NONE,NONE,
-s1,EMPTY,AB,AD,E,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,4,E,NONE,NONE,
-s2,EMPTY,EMPTY,AB,AD,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,4,A,NONE,NONE,
-s3,EMPTY,EMPTY,EMPTY,AB,D,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,4,A,NONE,NONE,
-s4,EMPTY,EMPTY,EMPTY,EMPTY,B,D,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,5,B,NONE,NONE,
-s5,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,D,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,NONE,NONE,NONE,NONE,
-s6,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,D,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,NONE,NONE,NONE,NONE,
-s7,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,D,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,NONE,NONE,NONE,NONE,
-s8,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,D,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,NONE,NONE,NONE,NONE,
-s9,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,EMPTY,D,EMPTY,EMPTY,EMPTY,EMPTY,NONE,NONE,11,D,
+{
+  "mode": "finite",
+  "num_bins": 15,
+  "trials": 1000,
+  "random_seed": 1,
+  "bin_move_timesteps": 1,
+  "default_pick_duration_timesteps": 1,
+  "item_types": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+  ],
+  "robots": [
+    {
+      "name": "R1",
+      "reachable_bins": [
+        4,
+        5,
+        6
+      ],
+      "pick_duration_timesteps": 1
+    },
+    {
+      "name": "R2",
+      "reachable_bins": [
+        11
+      ],
+      "pick_duration_timesteps": 1
+    }
+  ],
+  "pick_probabilities": {
+    "R1": {
+      "A": 0.7,
+      "B": 0.5,
+      "C": 0.8,
+      "D": 0.6,
+      "E": 0.4
+    },
+    "R2": {
+      "A": 0.3,
+      "B": 0.85,
+      "C": 0.45,
+      "D": 0.75,
+      "E": 0.65
+    }
+  },
+  "random_initial_state": {
+    "enabled": true,
+    "bins": [
+      1,
+      2,
+      3
+    ],
+    "min_total_items": 0,
+    "max_total_items": 5,
+    "item_type_distribution": {
+      "A": 1,
+      "B": 1,
+      "C": 1,
+      "D": 1,
+      "E": 1
+    }
+  },
+  "policies": [
+    {
+      "name": "random",
+      "type": "random"
+    },
+    {
+      "name": "highest_probability",
+      "type": "highest_probability"
+    }
+  ],
+  "outputs": {
+    "base_dir": "outputs",
+    "write_run_results": false
+  }
+}
