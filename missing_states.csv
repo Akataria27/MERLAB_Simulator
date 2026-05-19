@@ -1,2 +1,0 @@
-algorithm_name,num_trials,completed_trials,avg_elapsed_timesteps,avg_successful_picks,avg_failed_attempts,avg_total_attempts,avg_missed_items,avg_successful_picks_per_1000_timesteps,missing_state_count,invalid_action_count
-example,10,4,6.000000,2.800000,0.600000,3.400000,0.000000,370.000000,6,0
